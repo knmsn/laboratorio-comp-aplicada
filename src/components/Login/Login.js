@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -9,10 +10,11 @@ export default function Login() {
 
   const handleLogin = () => {
     if (email === "admin" && password === "admin") {
-      navigate("/home")
+      AsyncStorage.setItem('logged', 'true');
+      navigate("/home");
     } else {
       alert("DADOS INCORRETOS, TENTE NOVAMENTE");
-    }
+      }
   };
 
   return (
